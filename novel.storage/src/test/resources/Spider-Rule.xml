@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sites>
+	<site>
+		<title>顶点小说</title>
+		<charset>GBK</charset>
+		<url>http://www.23wx.com</url>
+		<chapter-list-selector>#at td a</chapter-list-selector>
+		<chapter-detail-title-selector>#amain h1,0</chapter-detail-title-selector>
+		<chapter-detail-content-selector>#contents</chapter-detail-content-selector>
+		<chapter-detail-prev-selector>#footlink a</chapter-detail-prev-selector>
+		<chapter-detail-next-selector>#footlink a,2</chapter-detail-next-selector>
+	</site>
+	<site>
+		<title>笔趣阁</title>
+		<charset>UTF-8</charset>
+		<url>http://www.biquge.tw</url>
+		<chapter-list-selector>#list dd a</chapter-list-selector>
+		<chapter-detail-title-selector>.bookname h1</chapter-detail-title-selector>
+		<chapter-detail-content-selector>#content</chapter-detail-content-selector>
+		<chapter-detail-prev-selector>#pager_prev</chapter-detail-prev-selector>
+		<chapter-detail-next-selector>#pager_next</chapter-detail-next-selector>
+	</site>
+	<site>
+		<title>看书中</title>
+		<charset>GBK</charset>
+		<url>http://www.kanshuzhong.com</url>
+		<chapter-list-selector>.bookcontent dd a</chapter-list-selector>
+		<chapter-detail-title-selector>#nr1 .ctitle</chapter-detail-title-selector>
+		<chapter-detail-content-selector>.textcontent</chapter-detail-content-selector>
+		<chapter-detail-prev-selector>.readlink a,1</chapter-detail-prev-selector>
+		<chapter-detail-next-selector>.readlink a,3</chapter-detail-next-selector>
+		<novel-selector>.book_list tr</novel-selector>
+		<novel-next-page-selector>#pagelink .next</novel-next-page-selector>
+	</site>
+	<site>
+		<title>笔下文学</title>
+		<charset>GBK</charset>
+		<url>http://www.bxwx8.org</url>
+		<chapter-list-selector>#TabCss dd a</chapter-list-selector>
+		<chapter-detail-title-selector>#title</chapter-detail-title-selector>
+		<chapter-detail-content-selector>#content</chapter-detail-content-selector>
+		<chapter-detail-prev-selector>#footlink a,2</chapter-detail-prev-selector>
+		<chapter-detail-next-selector>#footlink a,4</chapter-detail-next-selector>
+		<novel-selector>.grid tr</novel-selector>
+		<novel-next-page-selector>#pagelink .next</novel-next-page-selector>
+	</site>
+</sites>
