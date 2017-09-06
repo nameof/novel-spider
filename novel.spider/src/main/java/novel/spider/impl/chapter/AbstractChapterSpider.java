@@ -8,7 +8,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import novel.spider.NovelSiteEnum;
+import novel.spider.configuration.NovelSiteEnum;
 import novel.spider.entitys.Chapter;
 import novel.spider.impl.AbstractSpider;
 import novel.spider.interfaces.IChapterSpider;
@@ -26,7 +26,7 @@ public abstract class AbstractChapterSpider extends AbstractSpider implements IC
 			String result = crawl(url);
 			Document doc = Jsoup.parse(result);
 			doc.setBaseUri(url);
-			Elements as = doc.select(NovelSpiderUtil.getContext(NovelSiteEnum.getEnumByUrl(url)).get("chapter-list-selector"));
+			Elements as = doc.select(NovelSpiderUtil.getContext(NovelSiteEnum.getEnumByUrl(url)).getChapterListSelector());
 			List<Chapter> chapters = new ArrayList<>();
 			for (Element a : as) {
 				Chapter chapter = new Chapter();

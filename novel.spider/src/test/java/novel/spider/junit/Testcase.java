@@ -1,13 +1,16 @@
 package novel.spider.junit;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 import org.junit.Test;
 
-import novel.spider.NovelSiteEnum;
 import novel.spider.configuration.Configuration;
+import novel.spider.configuration.NovelSiteEnum;
 import novel.spider.entitys.Chapter;
 import novel.spider.entitys.Novel;
 import novel.spider.impl.chapter.BxwxChapterSpider;
@@ -49,7 +52,7 @@ public class Testcase {
 	@Test
 	public void testGetsChapter3() throws Exception {
 		IChapterSpider spider = new BxwxChapterSpider();
-		List<Chapter>  chapters  = spider.getsChapter("http://www.bxwx8.org/b/70/70093/");
+		List<Chapter>  chapters  = spider.getsChapter("http://www.bxwx9.org/b/28/28958/index.html");
 		for (Chapter chapter : chapters) {
 			System.out.println(chapter);
 		}
@@ -79,7 +82,7 @@ public class Testcase {
 	@Test
 	public void testGetChapterDetail3() {
 		IChapterDetailSpider spider = new DefaultChapterDetailSpider();
-		System.out.println(spider.getChapterDetail("http://www.bxwx8.org/b/70/29204416.html"));
+		System.out.println(spider.getChapterDetail("http://www.bxwx9.org/b/28/28958/5509235.html"));
 	}
 	
 	@Test
@@ -148,5 +151,11 @@ public class Testcase {
 //				System.out.println(novel);
 //			}
 		}
+	}
+	
+	@Test
+	public void t1() throws IOException {
+		Document doc = Jsoup.connect("http://www.bxwx9.org/b/28/28958/index.html").get();
+		System.out.println(doc.select(".toproad li:eq(0)").first().text());
 	}
 }

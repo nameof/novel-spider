@@ -14,8 +14,8 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
-import novel.spider.NovelSiteEnum;
 import novel.spider.configuration.Configuration;
+import novel.spider.configuration.NovelSiteEnum;
 import novel.spider.entitys.Chapter;
 import novel.spider.entitys.ChapterDetail;
 import novel.spider.interfaces.IChapterDetailSpider;

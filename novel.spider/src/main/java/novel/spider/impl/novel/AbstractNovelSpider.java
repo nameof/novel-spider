@@ -9,7 +9,8 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import novel.spider.NovelSiteEnum;
+import novel.spider.configuration.NovelSiteEnum;
+import novel.spider.configuration.SiteDefinition;
 import novel.spider.entitys.Novel;
 import novel.spider.impl.AbstractSpider;
 import novel.spider.interfaces.INovelSpider;
@@ -46,14 +47,14 @@ public abstract class AbstractNovelSpider extends AbstractSpider implements INov
 		for (int i = 0; i < maxTryTimes ; i++) {
 			try {
 				String result = super.crawl(url);
-				Map<String, String> context = NovelSpiderUtil.getContext(NovelSiteEnum.getEnumByUrl(url));
-				String novelSelector = context.get("novel-selector");
+				SiteDefinition siteDefinition = NovelSpiderUtil.getContext(NovelSiteEnum.getEnumByUrl(url));
+				String novelSelector = siteDefinition.getNovelSelector();
 				if (novelSelector == null) throw new RuntimeException(NovelSiteEnum.getEnumByUrl(url).getUrl() + ",url=" + url + "目前不支持抓取小说列表");
 				Document doc = Jsoup.parse(result);
 				doc.setBaseUri(url);
 				trs = doc.select(novelSelector);
 				
-				String nextPageSelector = context.get("novel-next-page-selector");
+				String nextPageSelector = siteDefinition.getNovelNextPageSelector();
 				if (nextPageSelector != null) {
 					Elements nextPageElements = doc.select(nextPageSelector);
 					nextPageElement = nextPageElements == null ? null : nextPageElements.first();

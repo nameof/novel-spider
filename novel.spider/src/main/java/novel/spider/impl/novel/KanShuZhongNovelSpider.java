@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.jsoup.select.Elements;
 
-import novel.spider.NovelSiteEnum;
+import novel.spider.configuration.NovelSiteEnum;
 import novel.spider.entitys.Novel;
 import novel.spider.util.NovelSpiderUtil;
 

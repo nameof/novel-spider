@@ -1,6 +1,6 @@
 package novel.spider.util;
 
-import novel.spider.NovelSiteEnum;
+import novel.spider.configuration.NovelSiteEnum;
 import novel.spider.impl.novel.BxwxNovelSpider;
 import novel.spider.impl.novel.KanShuZhongNovelSpider;
 import novel.spider.interfaces.INovelSpider;

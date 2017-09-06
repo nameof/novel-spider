@@ -1,4 +1,4 @@
-package novel.spider;
+package novel.spider.configuration;
 
 /**
  * 已经被支持的小说网站枚举
@@ -10,7 +10,7 @@ public enum NovelSiteEnum {
 	DingDianXiaoShuo(1, "23wx.com"), 
 	BiQuGe(2, "biquge.tw"), 
 	KanShuZhong(3, "kanshuzhong.com"), 
-	Bxwx(4, "bxwx8.org");
+	Bxwx(4, "bxwx9.org");
 	
 	private int id;
 	

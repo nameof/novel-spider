@@ -18,14 +18,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import novel.spider.configuration.NovelSiteEnum;
+import novel.spider.configuration.SiteDefinition;
+
 import org.dom4j.Document;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
-import novel.spider.NovelSiteEnum;
-
 public final class NovelSpiderUtil {
-	private static final Map<NovelSiteEnum, Map<String, String>> CONTEXT_MAP = new HashMap<>();
+	private static final Map<NovelSiteEnum, SiteDefinition> CONTEXT_MAP = new HashMap<>();
 	static {
 		init();
 	}
@@ -40,23 +41,60 @@ public final class NovelSpiderUtil {
 			List<Element> sites = root.elements("site");
 			for (Element site : sites) {
 				List<Element> subs = site.elements();
-				Map<String, String> subMap = new HashMap<>();
+				SiteDefinition sd = new SiteDefinition();
 				for (Element sub : subs) {
 					String name = sub.getName();
 					String text = sub.getTextTrim();
-					subMap.put(name, text);
+					populateSiteBean(sd, name, text);
 				}
-				CONTEXT_MAP.put(NovelSiteEnum.getEnumByUrl(subMap.get("url")), subMap);
+				CONTEXT_MAP.put(NovelSiteEnum.getEnumByUrl(sd.getUrl()), sd);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 	
+	private static void populateSiteBean(SiteDefinition sd, String name, String val) {
+		switch (name) {
+			case "title":
+				sd.setSiteName(val);
+				break;
+			case "charset":
+				sd.setCharset(val);
+				break;
+			case "url":
+				sd.setUrl(val);
+				break;
+			case "chapter-list-selector":
+				sd.setChapterListSelector(val);
+				break;
+			case "chapter-detail-title-selector":
+				sd.setChapterDetailTitleSelector(val);
+				break;
+			case "chapter-detail-content-selector":
+				sd.setChapterDetailContentSelector(val);
+				break;
+			case "chapter-detail-prev-selector":
+				sd.setChapterDetailPrevSelector(val);
+				break;
+			case "chapter-detail-next-selector":
+				sd.setChapterDetailNextSelector(val);
+				break;
+			case "novel-selector":
+				sd.setNovelSelector(val);
+				break;
+			case "novel-next-page-selector":
+				sd.setNovelNextPageSelector(val);
+				break;
+			default:
+				throw new RuntimeException("unkown bean definition ：" + name);
+		}
+	}
+	
 	/**
 	 * 拿到对应网站的解析规则
 	 */
-	public static Map<String, String> getContext(NovelSiteEnum novelSiteEnum) {
+	public static SiteDefinition getContext(NovelSiteEnum novelSiteEnum) {
 		return CONTEXT_MAP.get(novelSiteEnum);
 	}
 	
