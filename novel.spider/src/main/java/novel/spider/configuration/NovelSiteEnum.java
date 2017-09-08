@@ -49,6 +49,7 @@ public enum NovelSiteEnum {
 	}
 
 	public static NovelSiteEnum getEnumByUrl(String url) {
+		url = url.toLowerCase();
 		for (NovelSiteEnum novelSiteEnum : values()) {
 			if (url.contains(novelSiteEnum.url)) {
 				return novelSiteEnum;

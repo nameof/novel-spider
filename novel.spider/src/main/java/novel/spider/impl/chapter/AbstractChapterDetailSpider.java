@@ -18,6 +18,7 @@ public abstract class AbstractChapterDetailSpider extends AbstractSpider
 		try {
 			String result = super.crawl(url);
 			result = result.replace("&nbsp;", " ").replace("<br />", "${line}")
+					.replace("<br>", "${line}")
 					.replace("<br/>", "${line}");
 			Document doc = Jsoup.parse(result);
 			doc.setBaseUri(url);

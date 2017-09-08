@@ -1,28 +1,26 @@
 package novel.spider.junit;
 
-import java.io.IOException;
-import java.util.ArrayList;
+import java.net.MalformedURLException;
 import java.util.Iterator;
 import java.util.List;
-
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.junit.Test;
 
 import novel.spider.configuration.Configuration;
 import novel.spider.configuration.NovelSiteEnum;
 import novel.spider.entitys.Chapter;
 import novel.spider.entitys.Novel;
+import novel.spider.factory.NovelSpiderFactory;
+import novel.spider.impl.chapter.AbstractChapterSpider;
 import novel.spider.impl.chapter.BxwxChapterSpider;
 import novel.spider.impl.chapter.DefaultChapterDetailSpider;
 import novel.spider.impl.chapter.DefaultChapterSpider;
-import novel.spider.impl.download.NovelDownload;
+import novel.spider.impl.downloader.NovelDownloader;
 import novel.spider.interfaces.IChapterDetailSpider;
 import novel.spider.interfaces.IChapterSpider;
-import novel.spider.interfaces.INovelDownload;
+import novel.spider.interfaces.INovelDownloader;
 import novel.spider.interfaces.INovelSpider;
-import novel.spider.util.NovelSpiderFactory;
 import novel.spider.util.NovelSpiderUtil;
+
+import org.junit.Test;
 
 public class Testcase {
 	@Test
@@ -87,23 +85,12 @@ public class Testcase {
 	
 	@Test
 	public void testDownload() {
-		INovelDownload download = new NovelDownload(); 
+		INovelDownloader download = new NovelDownloader(); 
 		Configuration config = new Configuration();
 		config.setPath("D:/1");
 		config.setSize(50);
 		config.setTryTimes(10);
 		System.out.println("下载好了，文件保存在：" + download.download("http://www.23wx.com/html/42/42377/", config) + "这里，赶紧去看看吧！");
-	}
-	@Test
-	public void testSubList() {
-		List<Integer> ints = new ArrayList<>();
-		for (int i = 0; i < 10 ;i++) {
-			ints.add(i);
-		}
-		System.out.println(ints);
-		//[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-		//0-4
-		System.out.println(ints.subList(0, 5));
 	}
 	
 	@Test
@@ -121,8 +108,8 @@ public class Testcase {
 	}
 	@Test
 	public void testBxwxGetsNovel() {
-		INovelSpider spider = NovelSpiderFactory.getNovelSpider("http://www.bxwx8.org/binitialE/0/1.htm");
-		List<Novel> novels = spider.getsNovel("http://www.bxwx8.org/binitialE/0/1.htm", 10);
+		INovelSpider spider = NovelSpiderFactory.getNovelSpider("http://www.bxwx9.org/binitialE/0/1.htm");
+		List<Novel> novels = spider.getsNovel("http://www.bxwx9.org/binitialE/0/1.htm", 10);
 		for (Novel novel : novels) {
 			System.out.println(novel);
 		}
@@ -154,8 +141,9 @@ public class Testcase {
 	}
 	
 	@Test
-	public void t1() throws IOException {
-		Document doc = Jsoup.connect("http://www.bxwx9.org/b/28/28958/index.html").get();
-		System.out.println(doc.select(".toproad li:eq(0)").first().text());
+	public void t1() {
+		AbstractChapterSpider s = new DefaultChapterSpider();
+		List<Chapter> chapter = s.getsChapter("http://www.kanshuzhong.com/book/23729/");
+		System.out.println(chapter);
 	}
 }

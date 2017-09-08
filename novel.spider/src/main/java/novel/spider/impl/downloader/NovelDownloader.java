@@ -1,4 +1,4 @@
-package novel.spider.impl.download;
+package novel.spider.impl.downloader;
 
 import java.io.File;
 import java.io.IOException;
@@ -18,11 +18,11 @@ import novel.spider.configuration.Configuration;
 import novel.spider.configuration.NovelSiteEnum;
 import novel.spider.entitys.Chapter;
 import novel.spider.entitys.ChapterDetail;
+import novel.spider.factory.ChapterDetailSpiderFactory;
+import novel.spider.factory.ChapterSpiderFactory;
 import novel.spider.interfaces.IChapterDetailSpider;
 import novel.spider.interfaces.IChapterSpider;
-import novel.spider.interfaces.INovelDownload;
-import novel.spider.util.ChapterDetailSpiderFactory;
-import novel.spider.util.ChapterSpiderFactory;
+import novel.spider.interfaces.INovelDownloader;
 import novel.spider.util.NovelSpiderUtil;
 
 /**
@@ -33,7 +33,7 @@ import novel.spider.util.NovelSpiderUtil;
  * @author LiuKeFeng
  * @date   2016Äê10ÔÂ11ÈÕ
  */
-public class NovelDownload implements INovelDownload {
+public class NovelDownloader implements INovelDownloader {
 
 	@Override
 	public String download(String url, Configuration config) {

@@ -2,12 +2,6 @@ package novel.spider.impl.novel;
 
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
-
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 
 import novel.spider.configuration.NovelSiteEnum;
 import novel.spider.configuration.SiteDefinition;
@@ -16,15 +10,23 @@ import novel.spider.impl.AbstractSpider;
 import novel.spider.interfaces.INovelSpider;
 import novel.spider.util.NovelSpiderUtil;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
 /**
  * 一个抽象的小说列表抓取，已经实现了解析tr元素的方法
  * @author LiuKeFeng
  * @date   2016年10月14日
  */
 public abstract class AbstractNovelSpider extends AbstractSpider implements INovelSpider {
+	
 	protected Element nextPageElement;
+	
 	/** 下一页的url */
 	protected String nextPage;
+	
 	/**
 	 * 默认的抓取方法，最多会尝试 {@link INovelSpider#MAX_TRY_TIMES} 次下载
 	 * @param url
@@ -34,6 +36,7 @@ public abstract class AbstractNovelSpider extends AbstractSpider implements INov
 	protected Elements getsTr(String url) throws Exception {
 		return getsTr(url, INovelSpider.MAX_TRY_TIMES);
 	}
+	
 	/**
 	 * 以指定次数的形式去解析对应网页
 	 * @param url
@@ -82,33 +85,40 @@ public abstract class AbstractNovelSpider extends AbstractSpider implements INov
 	public String next() {
 		return nextPage;
 	}
+	
 	@Override
 	public Iterator<List<Novel>> iterator(String firstPage, Integer maxTryTimes) {
 		nextPage = firstPage;
 		return new NovelIterator(maxTryTimes);
 	}
+	
 	/**
 	 * 一个迭代器，专门用于对小说网站数据列表抓取
 	 * @author LiuKeFeng
 	 * @date   2016年10月16日
 	 */
 	private class NovelIterator implements Iterator<List<Novel>> {
+		
 		private Integer maxTryTimes;
+		
 		public NovelIterator(Integer maxTryTimes) {
 			this.maxTryTimes = maxTryTimes;
 		}
+		
 		@Override
 		public boolean hasNext() {
 			return AbstractNovelSpider.this.hasNext();
 		}
+		
 		@Override
 		public List<Novel> next() {
 			List<Novel> novels = getsNovel(nextPage, maxTryTimes);
 			return novels;
 		}
+		
 		@Override
 		public void remove() {
-			
+			throw new UnsupportedOperationException();
 		}
 	}
 }

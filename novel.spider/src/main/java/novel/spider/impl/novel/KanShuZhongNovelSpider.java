@@ -23,9 +23,6 @@ public class KanShuZhongNovelSpider extends AbstractNovelSpider {
 			Elements trs = super.getsTr(url, maxTryTimes);
 			for (int index = 1, size = trs.size() - 1; index < size; index++) {
 				Elements tds = trs.get(index).getElementsByTag("td");
-//				for (Element td : tds) {
-//					System.out.println(td);
-//				}
 				Novel novel = new Novel();
 				novel.setType(tds.first().text());
 				novel.setName(tds.get(1).text());

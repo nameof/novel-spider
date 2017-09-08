@@ -13,8 +13,8 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
 import novel.spider.entitys.Novel;
+import novel.spider.factory.NovelSpiderFactory;
 import novel.spider.interfaces.INovelSpider;
-import novel.spider.util.NovelSpiderFactory;
 import novel.storage.Processor;
 
 import org.apache.ibatis.session.SqlSession;

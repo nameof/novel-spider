@@ -5,29 +5,28 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import novel.spider.entitys.Chapter;
+import novel.spider.entitys.ChapterDetail;
+import novel.spider.factory.ChapterDetailSpiderFactory;
+import novel.spider.factory.ChapterSpiderFactory;
+import novel.spider.interfaces.IChapterDetailSpider;
+import novel.spider.interfaces.IChapterSpider;
+import novel.web.entitys.JSONResponse;
+import novel.web.service.NovelService;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import novel.spider.entitys.Chapter;
-import novel.spider.entitys.ChapterDetail;
-import novel.spider.interfaces.IChapterDetailSpider;
-import novel.spider.interfaces.IChapterSpider;
-import novel.spider.util.ChapterDetailSpiderFactory;
-import novel.spider.util.ChapterSpiderFactory;
-import novel.spider.util.NovelSpiderUtil;
-import novel.web.entitys.JSONResponse;
-import novel.web.service.NovelService;
-
 @Controller
 public class NovelController {
+
 	@Resource
 	private NovelService service;
-	static {
-		//NovelSpiderUtil.setConfigPath("D:/opt/web/novel.web/conf/Spider-Rule.xml");
-	}
+
+
 	@RequestMapping(value = "/test/chapters.do", method = RequestMethod.GET)
 	@ResponseBody
 	public JSONResponse getsChapter(String url) {

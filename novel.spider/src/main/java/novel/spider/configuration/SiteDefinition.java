@@ -1,5 +1,9 @@
 package novel.spider.configuration;
 
+/**
+ * XML≈‰÷√ µÃÂ¿‡
+ * @author ChengPan
+ */
 public class SiteDefinition {
 	
 	private String siteName;

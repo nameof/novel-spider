@@ -16,6 +16,7 @@ import novel.spider.util.NovelSpiderUtil;
  * @date   2016Äê10ÔÂ14ÈÕ
  */
 public class BxwxNovelSpider extends AbstractNovelSpider {
+	
 	public BxwxNovelSpider() {}
 
 	@Override

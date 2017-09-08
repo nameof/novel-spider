@@ -1,4 +1,4 @@
-package novel.spider.util;
+package novel.spider.factory;
 
 import novel.spider.configuration.NovelSiteEnum;
 import novel.spider.impl.chapter.BxwxChapterSpider;
